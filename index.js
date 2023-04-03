@@ -5,7 +5,7 @@ const password = document.querySelector("#password");
 const cpassword = document.querySelector("#cpassword");
 const btn = document.querySelector("#submit-button");
 const reg = /\S+@\S+\.\S+/;
-
+const containers = document.querySelectorAll(".input-field");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
@@ -64,6 +64,14 @@ function validatePassword() {
 function validateConfirmPassword() {
   if (cpassword.value.trim().length === 0) {
     error(cpassword, "Password field should not be empty");
+  } else if (
+    password.value.trim().length < 5 ||
+    password.value.trim().length > 20
+  ) {
+    error(
+      cpassword,
+      "Password must be minimum of 5 charcters or maximum of 20"
+    );
   } else if (cpassword.value != password.value) {
     error(cpassword, "Password does not matches");
   } else {
@@ -88,17 +96,26 @@ function success(element) {
   parent.classList.add("success");
 }
 function enableButton() {
-  if (
-    uname.value.trim().length >= 5 &&
-    uname.value.trim().length <= 10 &&
-    emailaddress.value.match(reg) &&
-    password.value.trim().length >= 5 &&
-    password.value.trim().length <= 20 &&
-    cpassword.value == password.value
-  ) {
-    btn.style.backgroundColor = "green";
-    btn.disabled = false;
-  } else {
-    btn.disabled = true;
-  }
+    if (
+      uname.value.trim().length >= 5 &&
+      uname.value.trim().length <= 10 &&
+      emailaddress.value.match(reg) &&
+      password.value.trim().length >= 5 &&
+      password.value.trim().length <= 20 &&
+      cpassword.value == password.value
+    ) {
+      btn.style.backgroundColor = "green";
+      btn.disabled = false;
+    } else {
+      btn.disabled = true;
+    }
+
+//   containers.forEach((container) => {
+//     if (container.classList.contains("success")) {
+//       btn.disabled = false;
+     
+//     } else {
+//       btn.disabled = true;
+//     }
+//   });
 }
