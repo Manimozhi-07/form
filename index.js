@@ -87,14 +87,14 @@ function validateConfirmPassword() {
   if (cpassword.value.trim().length === 0) {
     error(cpassword, "Password field should not be empty");
   } else if (
-    password.value.trim().length < 5 ||
-    password.value.trim().length > 20
+    cpassword.value.trim().length < 5 ||
+    cpassword.value.trim().length > 20
   ) {
     error(
       cpassword,
       "Password must be minimum of 5 charcters or maximum of 20"
     );
-  } else if (cpassword.value != password.value) {
+  } else if (cpassword.value !== password.value) {
     error(cpassword, "Password does not matches");
   } else {
     success(cpassword);
@@ -124,7 +124,7 @@ function enableButton() {
     emailaddress.value.match(reg) &&
     password.value.trim().length >= 5 &&
     password.value.trim().length <= 20 &&
-    cpassword.value == password.value
+    cpassword.value === password.value
   ) {
     btn.style.backgroundColor = "green";
     btn.disabled = false;
