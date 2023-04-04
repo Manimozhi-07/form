@@ -21,7 +21,6 @@ form {
   margin: 20px;
   width: 500px;
   border-radius: 10px;
-  margin: 30px;
 }
 form h3 {
   text-align: center;
@@ -35,7 +34,7 @@ form h3 {
   font-size: 14px;
   padding: 5px;
   width: 95%;
-  border:none;
+  border: none;
   outline: none;
   border-radius: 10px;
 }

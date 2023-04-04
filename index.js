@@ -5,7 +5,7 @@ const password = document.querySelector("#password");
 const cpassword = document.querySelector("#cpassword");
 const btn = document.querySelector("#submit-button");
 const reg = /\S+@\S+\.\S+/;
-const containers = document.querySelectorAll(".input-field");
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
@@ -14,17 +14,39 @@ uname.addEventListener("input", () => {
   validateUserName();
   enableButton();
 });
+uname.addEventListener("focusout", () => {
+  if (uname.value.trim().length === 0) {
+    error(uname, "Name field should not be empty");
+  }
+});
 emailaddress.addEventListener("input", () => {
   validateEmail();
   enableButton();
+});
+emailaddress.addEventListener("focusout", () => {
+  if (emailaddress.value.trim().length === 0) {
+    error(emailaddress, "Provide Email Address");
+  }
 });
 password.addEventListener("input", () => {
   validatePassword();
   enableButton();
 });
+password.addEventListener("focusout", () => {
+  if (password.value.trim().length === 0) {
+    error(password, "Password field should not be empty");
+  }
+  
+});
 cpassword.addEventListener("input", () => {
   validateConfirmPassword();
   enableButton();
+});
+cpassword.addEventListener("focusout", () => {
+  
+  if (cpassword.value.trim().length === 0) {
+    error(cpassword, "Password field should not be empty");
+  } 
 });
 
 function validateUserName() {
@@ -96,26 +118,26 @@ function success(element) {
   parent.classList.add("success");
 }
 function enableButton() {
-    if (
-      uname.value.trim().length >= 5 &&
-      uname.value.trim().length <= 10 &&
-      emailaddress.value.match(reg) &&
-      password.value.trim().length >= 5 &&
-      password.value.trim().length <= 20 &&
-      cpassword.value == password.value
-    ) {
-      btn.style.backgroundColor = "green";
-      btn.disabled = false;
-    } else {
-      btn.disabled = true;
-    }
+  if (
+    uname.value.trim().length >= 5 &&
+    uname.value.trim().length <= 10 &&
+    emailaddress.value.match(reg) &&
+    password.value.trim().length >= 5 &&
+    password.value.trim().length <= 20 &&
+    cpassword.value == password.value
+  ) {
+    btn.style.backgroundColor = "green";
+    btn.disabled = false;
+  } else {
+    btn.disabled = true;
+  }
 
-//   containers.forEach((container) => {
-//     if (container.classList.contains("success")) {
-//       btn.disabled = false;
-     
-//     } else {
-//       btn.disabled = true;
-//     }
-//   });
+  //   containers.forEach((container) => {
+  //     if (container.classList.contains("success")) {
+  //       btn.disabled = false;
+
+  //     } else {
+  //       btn.disabled = true;
+  //     }
+  //   });
 }
